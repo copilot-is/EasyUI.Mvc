@@ -1,0 +1,71 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Web.Mvc;
+
+namespace EasyUI.Mvc.UI
+{
+    public interface IHtmlNode
+    {
+        string TagName
+        {
+            get;
+        }
+
+        string InnerHtml
+        {
+            get;
+        }
+
+        TagRenderMode RenderMode
+        {
+            get;
+        }
+
+        IList<IHtmlNode> Children
+        {
+            get;
+        }
+
+        IDictionary<string, string> Attributes();
+
+        string Attribute(string key);
+
+        IHtmlNode Attribute(string key, string value);
+
+        IHtmlNode Attribute(string key, string value, bool replaceExisting);
+
+        IHtmlNode Attributes<TKey, TValue>(IDictionary<TKey, TValue> attributes);
+
+        IHtmlNode Attributes(object attributes);
+
+        IHtmlNode Attributes<TKey, TValue>(IDictionary<TKey, TValue> attributes, bool replaceExisting);
+
+        IHtmlNode AddClass(params string[] classes);
+
+        IHtmlNode PrependClass(params string[] classes);
+
+        IHtmlNode ToggleClass(string @class, bool condition);
+
+        IHtmlNode ToggleAttribute(string key, string value, bool condition);
+
+        IHtmlNode ToggleCss(string key, string value, bool condition);
+
+        IHtmlNode Template(Action<TextWriter> value);
+
+        IHtmlNode Css(string key, string value);
+
+        Action<TextWriter> Template();
+
+        IHtmlNode Html(string value);
+
+        IHtmlNode Text(string value);
+
+        void WriteTo(TextWriter output);
+
+        IHtmlNode AppendTo(IHtmlNode parent);
+    }
+}
